@@ -1,0 +1,13 @@
+include("functions.jl")
+
+function find_hole!(r)
+    num_steps = 0; 
+    side = Ost
+    while isborder(r, Nord)
+        num_steps += 1
+        for _ in 1:num_steps 
+            move!(r,side)
+        end
+        side = inverse_side(side)
+    end
+end
