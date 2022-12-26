@@ -1,0 +1,18 @@
+include("functions.jl")
+
+function simm_pos(r, side)
+    if isborder(r, side)
+        tolim!(r, inverse_side(side))
+    else
+        move!(r,side)
+        simm_pos(r, side)
+        move!(r,side)
+    end
+end
+
+function tolim!(r, side)
+    if !isborder(r, side)
+        move!(r,side)
+        tolim!(r, side)
+    end
+end
