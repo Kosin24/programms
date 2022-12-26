@@ -1,0 +1,18 @@
+include("functions.jl")
+
+function halfdistance!(r, side)
+    if !isborder(r, side)
+        move!(r, side)
+        no_delayed_action!(r, side)
+        move!(r, inverse_side(side))
+        move!(r, inverse_side(side))
+        move!(r, inverse_side(side))
+    end
+end
+
+function no_delayed_action!(r,side)
+    if !isborder(r, side)
+        move!(r, side)
+        halfdistance!(r, side)
+    end
+end
