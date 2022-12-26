@@ -1,0 +1,20 @@
+include("functions.jl")
+
+function mark_perimetr_with_inner_border!(r::Robot) # подзадача а
+    path = get_left_down_angle_modified!(r)
+    mark_perimetr!(r)
+    make_way_back!(r, path)
+end
+
+function moves_if_possible!(r::Robot, side::HorizonSide, n_steps::Int)::Bool
+    
+    while n_steps > 0 && move_if_possible!(r, side)
+        n_steps -= 1
+    end
+
+    if n_steps == 0
+        return true
+    end
+
+    return false
+end
